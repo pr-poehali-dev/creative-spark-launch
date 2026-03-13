@@ -10,40 +10,50 @@ export function ServicesSection() {
     >
       <div className="mx-auto w-full max-w-7xl">
         <div
-          className={`mb-12 transition-all duration-700 md:mb-16 ${
+          className={`mb-10 transition-all duration-700 md:mb-14 ${
             isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
           }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
-            Услуги
+            Знание
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Наши компетенции</p>
+          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Виды знания и научное познание</p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 md:gap-x-16 md:gap-y-12 lg:gap-x-24">
+        <div className="grid gap-6 md:grid-cols-2 md:gap-x-16 md:gap-y-8 lg:gap-x-24">
           {[
             {
-              title: "Веб-разработка",
-              description: "Создание современных веб-приложений любой сложности",
+              title: "Научное знание",
+              description: "Рациональное знание, подкреплённое теориями и законами. Объективно, системно, доказательно, воспроизводимо.",
               direction: "top",
             },
             {
-              title: "UI/UX Дизайн",
-              description: "Проектирование удобных и красивых интерфейсов",
+              title: "Обыденное знание",
+              description: "Базируется на повседневном опыте и здравом смысле. Несистематизировано, не описывается законами.",
               direction: "right",
             },
             {
-              title: "Мобильные приложения",
-              description: "Кроссплатформенная разработка для iOS и Android",
+              title: "Религиозное знание",
+              description: "Вера в сверхъестественное. Характеризуется эмоциональным восприятием реальности.",
               direction: "left",
             },
             {
-              title: "Консалтинг",
-              description: "Техническая экспертиза и стратегическое планирование",
+              title: "Художественное знание",
+              description: "Формируется сферой искусства. Не стремится быть научным, передаёт мир через образы.",
+              direction: "bottom",
+            },
+            {
+              title: "Философское знание",
+              description: "Рационально-теоретическое осмысление мира. Ищет предельные основания бытия и познания.",
+              direction: "left",
+            },
+            {
+              title: "Паранаучное знание",
+              description: "Телекинез, экстрасенсорика и др. Не поддаётся объяснению с позиций современной науки.",
               direction: "bottom",
             },
           ].map((service, i) => (
-            <ServiceCard key={i} service={service} index={i} isVisible={isVisible} />
+            <KnowledgeCard key={i} service={service} index={i} isVisible={isVisible} />
           ))}
         </div>
       </div>
@@ -51,7 +61,7 @@ export function ServicesSection() {
   )
 }
 
-function ServiceCard({
+function KnowledgeCard({
   service,
   index,
   isVisible,
@@ -81,16 +91,14 @@ function ServiceCard({
   return (
     <div
       className={`group transition-all duration-700 ${getRevealClass()}`}
-      style={{
-        transitionDelay: `${index * 150}ms`,
-      }}
+      style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <div className="mb-3 flex items-center gap-3">
+      <div className="mb-2 flex items-center gap-3">
         <div className="h-px w-8 bg-foreground/30 transition-all duration-300 group-hover:w-12 group-hover:bg-foreground/50" />
         <span className="font-mono text-xs text-foreground/60">0{index + 1}</span>
       </div>
-      <h3 className="mb-2 font-sans text-2xl font-light text-foreground md:text-3xl">{service.title}</h3>
-      <p className="max-w-sm text-sm leading-relaxed text-foreground/80 md:text-base">{service.description}</p>
+      <h3 className="mb-1 font-sans text-xl font-light text-foreground md:text-2xl">{service.title}</h3>
+      <p className="max-w-sm text-xs leading-relaxed text-foreground/70 md:text-sm">{service.description}</p>
     </div>
   )
 }

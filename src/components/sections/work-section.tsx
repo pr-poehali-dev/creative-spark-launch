@@ -10,85 +10,80 @@ export function WorkSection() {
     >
       <div className="mx-auto w-full max-w-7xl">
         <div
-          className={`mb-12 transition-all duration-700 md:mb-16 ${
+          className={`mb-10 transition-all duration-700 md:mb-14 ${
             isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
           }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
-            Проекты
+            Познание
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Избранные работы</p>
+          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Этапы и формы познавательной деятельности</p>
         </div>
 
-        <div className="space-y-6 md:space-y-8">
-          {[
-            {
-              number: "01",
-              title: "ТехноСтарт",
-              category: "Корпоративный портал",
-              year: "2024",
-              direction: "left",
-            },
-            {
-              number: "02",
-              title: "АльфаТрейд",
-              category: "Финтех платформа",
-              year: "2024",
-              direction: "right",
-            },
-            {
-              number: "03",
-              title: "МедиаПульс",
-              category: "Медиа сервис",
-              year: "2023",
-              direction: "left",
-            },
-          ].map((project, i) => (
-            <ProjectCard key={i} project={project} index={i} isVisible={isVisible} />
-          ))}
+        <div className="grid gap-8 md:grid-cols-2 md:gap-12">
+          {/* Чувственное */}
+          <div
+            className={`transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-16 opacity-0"}`}
+            style={{ transitionDelay: "150ms" }}
+          >
+            <div className="mb-4 flex items-center gap-3">
+              <div className="h-px w-8 bg-foreground/30" />
+              <span className="font-mono text-xs text-foreground/60">01 / Чувственное</span>
+            </div>
+            <h3 className="mb-3 font-sans text-2xl font-light text-foreground md:text-3xl">Чувственное познание</h3>
+            <p className="mb-4 text-sm leading-relaxed text-foreground/70 md:text-base">
+              Непосредственный контакт органов чувств с предметом. Воспроизводит внешние стороны и свойства объектов.
+            </p>
+            <div className="space-y-2">
+              {[
+                { form: "Ощущение", desc: "Отражение отдельных свойств предмета через органы чувств" },
+                { form: "Восприятие", desc: "Целостный чувственный образ предмета или процесса" },
+                { form: "Представление", desc: "Обобщённый образ в сознании без прямого воздействия на органы чувств" },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className={`border-l border-foreground/20 pl-3 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+                  style={{ transitionDelay: `${300 + i * 100}ms` }}
+                >
+                  <span className="font-mono text-xs font-medium text-foreground/90">{item.form}</span>
+                  <p className="text-xs text-foreground/60 leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Рациональное */}
+          <div
+            className={`transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"}`}
+            style={{ transitionDelay: "300ms" }}
+          >
+            <div className="mb-4 flex items-center gap-3">
+              <div className="h-px w-8 bg-foreground/30" />
+              <span className="font-mono text-xs text-foreground/60">02 / Рациональное</span>
+            </div>
+            <h3 className="mb-3 font-sans text-2xl font-light text-foreground md:text-3xl">Рациональное познание</h3>
+            <p className="mb-4 text-sm leading-relaxed text-foreground/70 md:text-base">
+              Логические операции, опирающиеся на результаты чувственного познания. Выявляет существенные признаки и закономерности.
+            </p>
+            <div className="space-y-2">
+              {[
+                { form: "Понятие", desc: "Мысль, фиксирующая общие существенные свойства объекта познания" },
+                { form: "Суждение", desc: "Мысль, утверждающая или отрицающая что-либо об объекте" },
+                { form: "Умозаключение", desc: "Новое суждение, выводимое логически из нескольких суждений" },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className={`border-l border-foreground/20 pl-3 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+                  style={{ transitionDelay: `${450 + i * 100}ms` }}
+                >
+                  <span className="font-mono text-xs font-medium text-foreground/90">{item.form}</span>
+                  <p className="text-xs text-foreground/60 leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
-  )
-}
-
-function ProjectCard({
-  project,
-  index,
-  isVisible,
-}: {
-  project: { number: string; title: string; category: string; year: string; direction: string }
-  index: number
-  isVisible: boolean
-}) {
-  const getRevealClass = () => {
-    if (!isVisible) {
-      return project.direction === "left" ? "-translate-x-16 opacity-0" : "translate-x-16 opacity-0"
-    }
-    return "translate-x-0 opacity-100"
-  }
-
-  return (
-    <div
-      className={`group flex items-center justify-between border-b border-foreground/10 py-6 transition-all duration-700 hover:border-foreground/20 md:py-8 ${getRevealClass()}`}
-      style={{
-        transitionDelay: `${index * 150}ms`,
-        marginLeft: index % 2 === 0 ? "0" : "auto",
-        maxWidth: index % 2 === 0 ? "85%" : "90%",
-      }}
-    >
-      <div className="flex items-baseline gap-4 md:gap-8">
-        <span className="font-mono text-sm text-foreground/30 transition-colors group-hover:text-foreground/50 md:text-base">
-          {project.number}
-        </span>
-        <div>
-          <h3 className="mb-1 font-sans text-2xl font-light text-foreground transition-transform duration-300 group-hover:translate-x-2 md:text-3xl lg:text-4xl">
-            {project.title}
-          </h3>
-          <p className="font-mono text-xs text-foreground/50 md:text-sm">{project.category}</p>
-        </div>
-      </div>
-      <span className="font-mono text-xs text-foreground/30 md:text-sm">{project.year}</span>
-    </div>
   )
 }
